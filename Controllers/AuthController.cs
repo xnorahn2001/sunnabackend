@@ -79,7 +79,8 @@ namespace SonnaBackend.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                // Return inner exception for debugging DB constraints
+                return BadRequest(ex.InnerException?.Message ?? ex.Message);
             }
         }
 
