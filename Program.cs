@@ -58,9 +58,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy =>
         {
-            policy.AllowAnyOrigin()
+            policy.WithOrigins(
+                    "http://localhost:5500",             // للتجربة المحلية
+                    "https://sunnaproject.netlify.app",  // رابط الفرونت إند الخاص بك على Netlify
+                    "https://xnorahn2001.github.io"      // في حال رفعتيه على GitHub Pages أيضاً
+                )
                   .AllowAnyMethod()
-                  .AllowAnyHeader();
+                  .AllowAnyHeader()
+                  .AllowCredentials(); // يسمح بمرور الكوكيز وبيانات الاعتماد
         });
 });
 
